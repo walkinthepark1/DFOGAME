@@ -1,0 +1,14 @@
+{
+  "name": "Octo Rescue — Debris Free Oceans",
+  "short_name": "Octo Rescue",
+  "description": "Swim as the Debris Free Oceans octopus, clean up ocean trash, and drag litterbugs to the deep.",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#21409a",
+  "theme_color": "#21409a",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

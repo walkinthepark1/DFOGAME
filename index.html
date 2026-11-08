@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#21409a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Octo Rescue — swim as the Debris Free Oceans octopus, clean up ocean trash, and drag litterbugs to the deep.">
+<title>Octo Rescue</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Octo Rescue game"></canvas>
+<div id="safe" aria-hidden="true"></div>
+
+<button id="pauseBtn" class="icon-btn hidden" aria-label="Pause">II</button>
+
+<!-- Start screen -->
+<section id="menu" class="overlay">
+  <div class="panel">
+    <img class="brand" src="assets/dfo-logo-white.png" alt="Debris Free Oceans" width="150" height="79">
+    <h1 class="title">OCTO<span>RESCUE</span></h1>
+    <p class="tag">Clean the sea. Catch the litterbugs. Feed the octopus.</p>
+    <button id="startBtn" class="big-btn">DIVE IN 🐙</button>
+    <p class="best">BEST: <b id="bestMenu">0</b></p>
+    <div class="how">
+      <div><i class="dot" style="--c:#6bcbda"></i><span><b>Drag anywhere</b> to swim (or arrow keys / WASD)</span></div>
+      <div><i class="dot" style="--c:#ffd84d"></i><span>Swim into floating trash to <b>clean it up</b></span></div>
+      <div><i class="dot" style="--c:#ff5a5a"></i><span>Boaters who toss trash get marked <b>LITTERBUG</b> — and they fight back</span></div>
+      <div><i class="dot" style="--c:#ff8a3d"></i><span>Swim up under a litterbug's boat to <b>drag it down and devour them</b></span></div>
+      <div><i class="dot" style="--c:#b07dff"></i><span>Fill the <b>RAGE</b> meter to go berserk</span></div>
+    </div>
+    <div class="toggles">
+      <label><input type="checkbox" id="optSound" checked> Sound</label>
+      <label><input type="checkbox" id="optShake" checked> Screen shake</label>
+    </div>
+    <a class="org-link" href="https://debrisfreeoceans.org" target="_blank" rel="noopener">A game for debrisfreeoceans.org ↗</a>
+  </div>
+</section>
+
+<!-- Pause -->
+<section id="pause" class="overlay hidden">
+  <div class="panel">
+    <h2 class="sub">PAUSED</h2>
+    <button id="resumeBtn" class="big-btn">RESUME</button>
+    <div class="toggles"><label><input type="checkbox" id="optSound2" checked> Sound</label></div>
+    <button id="quitBtn" class="small-btn">MAIN MENU</button>
+  </div>
+</section>
+
+<!-- Game over -->
+<section id="over" class="overlay hidden">
+  <div class="panel">
+    <h2 id="overTitle" class="sub boom">GAME OVER</h2>
+    <p id="overReason" class="reason"></p>
+    <p class="score-line">SCORE <b id="finalScore">0</b></p>
+    <p id="newBest" class="new-best hidden">★ NEW BEST ★</p>
+    <div class="stats">
+      <div><b id="statTrash">0</b><span>trash cleaned</span></div>
+      <div><b id="statEaten">0</b><span>litterbugs eaten</span></div>
+      <div><b id="statLevel">1</b><span>level</span></div>
+    </div>
+    <div class="fact">
+      <p class="fact-h">🌊 OCEAN FACT</p>
+      <p id="factText"></p>
+    </div>
+    <button id="retryBtn" class="big-btn">SWIM AGAIN</button>
+    <a class="small-btn link-btn" href="https://debrisfreeoceans.org" target="_blank" rel="noopener">CLEAN UP FOR REAL ↗</a>
+    <button id="menuBtn" class="small-btn">MAIN MENU</button>
+  </div>
+</section>
+
+<script src="game.js"></script>
+<script>
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+</script>
+</body>
+</html>
